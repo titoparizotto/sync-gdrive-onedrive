@@ -4,18 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="05db719b-31cd-408f-bf04-433f77855897" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sync-gdrive-onedrive.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/directories/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/directories/directory.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/directories.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logger/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logger/logger.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sync-clouds.py" afterDir="false" />
+    <list default="true" id="05db719b-31cd-408f-bf04-433f77855897" name="Changes" comment="criada várias funções para remoção de arquivos. Migradas funções para o pacote util">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +22,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "titoparizotto"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/titoparizotto/sync-gdrive-onedrive",
+    "accountId": "728344b1-7b97-4e00-a322-32580a4f01cb"
+  }
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
@@ -106,22 +108,43 @@
       <option name="presentableId" value="Default" />
       <updated>1733336415009</updated>
     </task>
+    <task id="LOCAL-00001" summary="Commit Inicial">
+      <option name="closed" value="true" />
+      <created>1733982321144</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1733982321144</updated>
+    </task>
+    <task id="LOCAL-00002" summary="criada várias funções para remoção de arquivos. Migradas funções para o pacote util">
+      <option name="closed" value="true" />
+      <created>1734213666716</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1734213666716</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Commit Inicial" />
+    <MESSAGE value="criada várias funções para remoção de arquivos. Migradas funções para o pacote util" />
+    <option name="LAST_COMMIT_MESSAGE" value="criada várias funções para remoção de arquivos. Migradas funções para o pacote util" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/directories/directory.py</url>
-          <line>89</line>
-          <option name="timeStamp" value="59" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/directories/directory.py</url>
-          <line>113</line>
-          <option name="timeStamp" value="61" />
-        </line-breakpoint>
-      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">
@@ -130,10 +153,5 @@
         </breakpoint>
       </default-breakpoints>
     </breakpoint-manager>
-    <watches-manager>
-      <configuration name="PythonConfigurationType">
-        <watch expression="directory.subdirectories" />
-      </configuration>
-    </watches-manager>
   </component>
 </project>
