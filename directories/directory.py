@@ -1,11 +1,9 @@
-import logging
-import os
 import traceback
 from util import *
+from util.ConfigManager import ConfigManager
 
-from logger import Logger
-
-log = Logger(log_file="out.log", log_level=logging.DEBUG)
+ConfigManager.initialize()
+log = Logger(log_file= ConfigManager.get("app.logger.log_file"), log_level=logging.INFO)
 
 class Directory:
     def __init__(self, name, target_directory=None):

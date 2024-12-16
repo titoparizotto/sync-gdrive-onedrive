@@ -1,5 +1,18 @@
+import logging
+import os
+import re
+import shutil
+import subprocess
+from collections import defaultdict
+from datetime import datetime
+from .Logger import *
+from .ConfigManager import *
+
+
+log = Logger(log_file="log_file" , log_level=logging.INFO)
+
 def allow_extention(file):
-    ignored_extention = ["ini","lnk","gsheet","gmap","gdoc","gslides","nomedia"]
+    ignored_extention = ConfigManager.get("files.ignored_extensions")
     if os.path.splitext(file)[1][1:] in ignored_extention:
         #log.info(f"Arquivo {file} ignorado!")
         return False
@@ -7,7 +20,7 @@ def allow_extention(file):
         return True
 
 def check_duplicated_files(path):
-    file_suffix = re.compile(r"(\s*\(\d+\)|~\d+)$")
+    file_suffix = re.compile(ConfigManager.get("files.duplicated_files_regex"))
     list_files = defaultdict(list)
     duplicated_files = defaultdict(list)
 
@@ -25,7 +38,7 @@ def check_duplicated_files(path):
     for file_name, path in duplicated_files.items():
         log.info(f"#\"{file_name}\"#{"#".join([f'\"{p}\"' for p in path])}")
 
-    rename_duplicated_files_for_directory(duplicated_files)
+    #rename_duplicated_files_for_directory(duplicated_files)
 
 def check_original_file_is_updated(file, target_file):
     date_mod_original_file = int(os.path.getmtime(file))
@@ -63,39 +76,22 @@ def get_target_file(file, directory):
         return None
 
 def get_target_dir(current_path):
-    source_target_list = [["G:\\Meu Drive\\geral", "C:\\Users\\titop\\OneDrive\\Documentos\\geral"],
-                          ["G:\\Meu Drive\\fotos_videos", "C:\\Users\\titop\\OneDrive\\Imagens"],
-                          ["G:\\Meu Drive\\backup", "C:\\Users\\titop\\OneDrive\\Documentos\\backup"],
-                          ["G:\\Meu Drive\\fotos_videos\\00_geral",
-                           "C:\\Users\\titop\\OneDrive\\Imagens\\00_geral"],
-                          [r"C:\Users\titop\OneDrive\Imagens\Galeria Samsung\DCIM",
-                           r"C:\Users\titop\OneDrive\Documentos\geral\temp\fotos_tito"]
-                          ]
+    source_target_list = ConfigManager.get("directory.source_target")
     for index, pair_path in enumerate(source_target_list):
         if str(pair_path[0]) in current_path:
             target_directory = current_path.replace(source_target_list[index][0], source_target_list[index][1])
             return target_directory
 
 def one_drive_free_disk(current_path):
+    command = f'attrib +U -P "{current_path}"'
     try:
-        command = f'attrib +U -P "{current_path}"'
         subprocess.run(command, shell=True, check=True)
         log.info("Liberando espaço em disco para o diretório: "+ command)
     except Exception as e:
         log.error("Erro ao executar comando: " + command)
 
 def rename_duplicated_files_for_directory(duplicated_files):
-    regex = re.compile(r"(^DSC\d{5}\.JPG$|"
-                       r"^IMG_\d{4}\.JPG$|"
-                       r"^DSC\d{5} \(\d+\)\.JPG$)|"
-                       r"^IMG\d{4}\.JPG$|"
-                       r"^\d{3}.jpg$|"
-                       r"^Tema\d{2}.doc$|"
-                       r"^Fotos \d{3}.jpg$|"
-                       r"^g_\d{3}.jpg$|"
-                       r"^\d{5}.MTS$|"
-                       r"^DSC_\d{4}\.JPG$|"
-                       r"DSCN\d{4}.JPG$", re.IGNORECASE)
+    regex = re.compile(ConfigManager.get("files.rename_files_regex"), re.IGNORECASE)
     for file_name, path in duplicated_files.items():
         if regex.match(file_name):
             for p in path:
@@ -105,7 +101,7 @@ def rename_duplicated_files_for_directory(duplicated_files):
                 log.info(f"Arquivo {file_name} renomeado para {new_path}")
 
 def delete_files_from_file():
-    to_delete = r"C:\Users\titop\dev\python\sync-gdrive-onedrive\delete.txt"
+    to_delete = ConfigManager.get("files.path_to_delete")
     with open(to_delete,"r") as td:
         paths = td.read().splitlines()
     for path in paths:

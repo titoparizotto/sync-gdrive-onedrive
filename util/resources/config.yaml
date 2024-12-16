@@ -1,0 +1,22 @@
+app:
+  root: "C:\\Users\\titop\\OneDrive"
+  logger:
+    log_file: 'out.log'
+    format: "%(asctime)s - %(levelname)s - %(message)s"
+    date_format: '%Y-%m-%d %H:%M:%S'
+    log_level: 10
+
+directory:
+  source_target:
+    - [ "G:\\Meu Drive\\geral", "C:\\Users\\titop\\OneDrive\\Documentos\\geral" ]
+    - [ "G:\\Meu Drive\\fotos_videos", "C:\\Users\\titop\\OneDrive\\Imagens" ]
+    - [ "G:\\Meu Drive\\backup", "C:\\Users\\titop\\OneDrive\\Documentos\\backup" ]
+    - [ "G:\\Meu Drive\\fotos_videos\\00_geral", "C:\\Users\\titop\\OneDrive\\Imagens\\00_geral" ]
+    - [ "C:\\Users\\titop\\OneDrive\\Imagens\\Galeria Samsung\\DCIM", "C:\\Users\\titop\\OneDrive\\Documentos\\geral\\temp\\fotos_tito" ]
+
+files:
+  rename_files_regex: "(^DSC\\d{5}\\.JPG$|^IMG_\\d{4}\\.JPG$|^DSC\\d{5} \\(\\d+\\)\\.JPG$|^IMG\\d{4}\\.JPG$|^\\d{3}.jpg$|^Tema\\d{2}.doc$|^Fotos \\d{3}.jpg$|^g_\\d{3}.jpg$|^\\d{5}.MTS$|^DSC_\\d{4}\\.JPG$|DSCN\\d{4}.JPG$)"
+  duplicated_files_regex: "(\\s*\\(\\d+\\)|~\\d+)$"
+  path_to_delete: "C:\\Users\\titop\\dev\\python\\sync-gdrive-onedrive\\delete.txt"
+  ignored_extensions: ["ini","lnk","gsheet","gmap","gdoc","gslides"]
+  ignored_file_names: [".nomedia"]
